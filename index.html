@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<!-- הצהרה על סוג המסמך – HTML5 -->
 <html lang="he">
-<!-- תגית השורש של הדף, עם מאפיין השפה לעברית -->
-
 <head>
-    <!-- החלק הזה מכיל מידע שלא מוצג ישירות למשתמש -->
+    <!-- הגדרת קידוד התווים לדף ל-UTF-8, מה שתומך בעברית -->
     <meta charset="UTF-8">
-    <!-- קובע את קידוד התווים לדף ל-UTF-8, מה שתומך בעברית -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- מבטיח שהדף יוצג נכון בכל גודל מסך, במיוחד במכשירים ניידים -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- כותרת הדף שמופיעה בכרטיסיית הדפדפן -->
     <title>דף נחיתה - JOBAKSHI</title>
-    <!-- מגדיר את כותרת הדף שמופיעה בכרטיסיית הדפדפן -->
     <!-- קישור לגופן "Alef" מ-Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -152,10 +148,67 @@
             width: 100%;
             /* רוחב מלא של הפוטר */
         }
+
+        /* סגנונות עבור תפריט נגישות */
+        .accessibility-button {
+            position: fixed;
+            /* ממקם את הכפתור למקום קבוע על המסך */
+            top: 20px;
+            right: 20px;
+            background-color: #FFA500;
+            /* צבע רקע כתום לכפתור */
+            color: white;
+            /* צבע טקסט לבן */
+            padding: 10px 15px;
+            /* רווח פנימי בכפתור */
+            border: none;
+            /* הסרת גבול לכפתור */
+            border-radius: 5px;
+            /* קצוות מעוגלות לכפתור */
+            cursor: pointer;
+            /* שינוי הסמן בעת ריחוף על הכפתור */
+            z-index: 1000; /* מוודא שהכפתור מעל כל האלמנטים */
+        }
+        .accessibility-menu {
+            display: none; /* התפריט מוסתר כברירת מחדל */
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background-color: white;
+            /* צבע רקע לבן לתפריט הנגישות */
+            color: black;
+            /* צבע טקסט שחור */
+            border-radius: 5px;
+            /* קצוות מעוגלות לתפריט */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            /* צל לתפריט */
+            z-index: 1000; /* מוודא שהתפריט מעל כל האלמנטים */
+            padding: 10px;
+            /* רווח פנימי בתפריט */
+        }
+        .accessibility-menu a {
+            display: block; /* יוצר שורה חדשה לכל לינק */
+            margin: 5px 0;
+            /* רווחים מעל ומתחת לכל לינק */
+            color: black; /* צבע טקסט שחור לכל לינק */
+            text-decoration: none; /* הסרת קו מתחת ללינקים */
+        }
     </style>
 </head>
 
 <body>
+    <!-- כפתור נגישות שמאפשר פתיחת תפריט הנגישות -->
+    <button class="accessibility-button" onclick="toggleAccessibilityMenu()">נגישות</button>
+    
+    <!-- תפריט נגישות עם אפשרויות שונות -->
+    <div class="accessibility-menu" id="accessibilityMenu">
+        <h4>אפשרויות נגישות</h4>
+        <a href="#" onclick="changeFontSize('small')">גודל טקסט קטן</a>
+        <a href="#" onclick="changeFontSize('medium')">גודל טקסט רגיל</a>
+        <a href="#" onclick="changeFontSize('large')">גודל טקסט גדול</a>
+        <a href="#" onclick="changeContrast()">ניגודיות גבוהה</a>
+    </div>
+
     <!-- הלוגו של JOBAKSHI -->
     <img src="new-logo.png" alt="לוגו JOBAKSHI" class="logo">
     
@@ -165,27 +218,54 @@
     <!-- קונטיינר לטופס -->
     <div class="form-container">
         <h3>תמצאו לי עבודה</h3>
-        <!-- טופס לשליחת נתונים ל-Formspree -->
+        <!-- טופס לשליחת נתונים -->
         <form action="https://formspree.io/f/manwgpqz" method="POST">
-            <!-- שדה שם פרטי -->
             <input type="text" name="first_name" placeholder="שם פרטי" required>
-            <!-- שדה שם משפחה -->
+            <!-- שדה להזנת שם פרטי -->
             <input type="text" name="last_name" placeholder="שם משפחה" required>
-            <!-- שדה מספר טלפון עם אימות פורמט -->
+            <!-- שדה להזנת שם משפחה -->
             <input type="tel" name="phone" placeholder="מספר טלפון" pattern="[0-9]{10}" title="מספר טלפון חייב להיות 10 ספרות" required>
-            <!-- שדה אימייל -->
+            <!-- שדה להזנת מספר טלפון, דורש 10 ספרות -->
             <input type="email" name="email" placeholder="האימייל שלך" required>
-            <!-- שדה הודעה אופציונלי -->
+            <!-- שדה להזנת כתובת אימייל -->
             <textarea name="message" placeholder="הודעה (אופציונלי)"></textarea>
-            <!-- כפתור לשליחת הטופס -->
+            <!-- שדה להזנת הודעה אופציונלית -->
             <button type="submit">תחזרו אלי</button>
+            <!-- כפתור לשליחת הטופס -->
         </form>
     </div>
-
-    <!-- פוטר עם כל הזכויות שמורות -->
+    
+    <!-- פוטר עם זכויות יוצרים -->
     <footer>
         <p>כל הזכויות שמורות &copy; 2024 JOBAKSHI</p>
     </footer>
-</body>
 
+    <script>
+        // פונקציה לפתיחת או סגירת תפריט הנגישות
+        function toggleAccessibilityMenu() {
+            const menu = document.getElementById('accessibilityMenu');
+            menu.style.display = menu.style.display === 'none' || menu.style.display === '' ? 'block' : 'none';
+        }
+
+        // פונקציה לשינוי גודל הטקסט בדף
+        function changeFontSize(size) {
+            const body = document.body;
+            if (size === 'small') {
+                body.style.fontSize = '14px'; // גודל טקסט קטן
+            } else if (size === 'medium') {
+                body.style.fontSize = '16px'; // גודל טקסט רגיל
+            } else if (size === 'large') {
+                body.style.fontSize = '18px'; // גודל טקסט גדול
+            }
+        }
+
+        // פונקציה לשינוי ניגודיות צבעי הרקע והטקסט
+        function changeContrast() {
+            const body = document.body;
+            body.style.backgroundColor = body.style.backgroundColor === 'rgb(81, 74, 71)' ? '#000' : 'rgb(81, 74, 71)';
+            body.style.color = body.style.color === 'white' ? '#fff' : 'white';
+        }
+    </script>
+</body>
 </html>
+    
