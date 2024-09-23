@@ -1,103 +1,191 @@
 <!DOCTYPE html>
+<!-- הצהרה על סוג המסמך – HTML5 -->
 <html lang="he">
+<!-- תגית השורש של הדף, עם מאפיין השפה לעברית -->
+
 <head>
+    <!-- החלק הזה מכיל מידע שלא מוצג ישירות למשתמש -->
     <meta charset="UTF-8">
+    <!-- קובע את קידוד התווים לדף ל-UTF-8, מה שתומך בעברית -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- מבטיח שהדף יוצג נכון בכל גודל מסך, במיוחד במכשירים ניידים -->
     <title>דף נחיתה - JOBAKSHI</title>
+    <!-- מגדיר את כותרת הדף שמופיעה בכרטיסיית הדפדפן -->
+    <!-- קישור לגופן "Alef" מ-Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* התחלת סגנונות CSS */
+
         * {
-            box-sizing: border-box; /* מאפשר עיצוב גמיש של אלמנטים */
+            box-sizing: border-box;
+            /* מגדיר שכל האלמנטים יחשבו את padding ו-border כחלק מהגודל הכולל שלהם */
             margin: 0;
             padding: 0;
+            /* הסרת רווחים ברירת מחדל לכל האלמנטים */
         }
+
         body {
-            font-family: 'Alef', sans-serif; /* מגדיר את הפונט */
-            background-color: #f0f0f0; /* צבע רקע בהיר */
-            color: #333; /* צבע טקסט כהה */
+            font-family: 'Alef', sans-serif;
+            /* הגדרת הגופן לכל הדף */
+            background-color: rgb(81, 74, 71);
+            /* צבע רקע כהה מתאים ללוגו */
+            color: white;
+            /* צבע טקסט ברירת מחדל */
             display: flex;
+            /* שימוש ב-Flexbox למיקום האלמנטים */
             flex-direction: column;
-            align-items: center; /* ממרכז את התוכן */
-            justify-content: center;
-            height: 100vh; /* גובה מלא */
+            /* סידור האלמנטים בעמודה */
+            align-items: center;
+            /* יישור האלמנטים אופקית למרכז */
+            justify-content: flex-start;
+            /* יישור האלמנטים אנכית מתחילת הדף */
+            min-height: 100vh;
+            /* גובה מינימלי של 100% מגובה המסך */
+            padding: 20px;
+            /* רווח פנימי מסביב לכל הדף */
             text-align: center;
+            /* יישור הטקסט למרכז */
+            overflow-y: auto;
+            /* מאפשר גלילה אנכית במידת הצורך */
         }
+
         .logo {
-            width: 300px; /* שינוי גודל הלוגו */
-            margin-bottom: 30px; /* רווח מתחת ללוגו */
+            width: 250px;
+            /* הגדרת רוחב הלוגו */
+            margin-bottom: 40px;
+            /* רווח מתחת ללוגו */
         }
+
         h1 {
-            font-size: 36px; /* גודל כותרת גדול יותר */
-            margin-bottom: 20px; /* רווח מתחת לכותרת */
-            color: #ff5722; /* צבע כתום כהה */
+            font-size: 28px;
+            /* גודל גופן של הכותרת הראשית */
+            margin-bottom: 10px;
+            /* רווח מתחת לכותרת */
         }
+
         p {
-            font-size: 20px; /* גודל טקסט גדול יותר */
-            margin-bottom: 40px; /* רווח מתחת לפסקה */
+            font-size: 18px;
+            /* גודל גופן של הפסקה */
+            margin-bottom: 30px;
+            /* רווח מתחת לפסקה */
         }
+
         .form-container {
-            background-color: rgba(255, 255, 255, 0.9); /* רקע לבן עם שקיפות */
-            border-radius: 10px; /* פינות מעוגלות */
-            padding: 40px; /* רווח פנימי גדול יותר */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* הצללה */
+            background-color: rgba(255, 255, 255, 0.9);
+            /* רקע לבן עם שקיפות קלה */
+            border-radius: 10px;
+            /* קצוות מעוגלות */
+            padding: 30px;
+            /* רווח פנימי בתוך הטופס */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            /* צל לטופס לשיפור הנראות */
             width: 90%;
-            max-width: 450px; /* גובה מרבי לטופס */
-            margin: 20px; /* רווח מכל צד */
+            /* רוחב של 90% מהאלמנט ההורה */
+            max-width: 400px;
+            /* רוחב מקסימלי של 400px */
+            margin: 20px 0;
+            /* רווחים מעל ומתחת לטופס */
         }
+
         .form-container h3 {
-            margin-bottom: 20px; /* רווח מתחת לכותרת בטופס */
-            color: #ff5722; /* צבע כתום כהה לכותרת */
+            margin-bottom: 20px;
+            /* רווח מתחת לכותרת הטופס */
+            color: #FFA500;
+            /* צבע כתום לכותרת הטופס */
         }
-        .form-container input, .form-container button {
-            width: 100%; /* גודל מלא */
-            margin-bottom: 15px; /* רווח מתחת לכל שדה */
-            padding: 15px; /* רווח פנימי גדול יותר */
-            border: 2px solid #ff5722; /* מסגרת בצבע כתום */
-            border-radius: 5px; /* פינות מעוגלות */
-            font-size: 16px; /* גודל טקסט */
+
+        .form-container input,
+        .form-container textarea {
+            width: 100%;
+            /* רוחב מלא של השדה */
+            margin-bottom: 15px;
+            /* רווח מתחת לשדה */
+            padding: 12px;
+            /* רווח פנימי בתוך השדה */
+            border: 1px solid #ccc;
+            /* גבול קל לשדה */
+            border-radius: 5px;
+            /* קצוות מעוגלות לשדות */
+            font-size: 16px;
+            /* גודל גופן של השדות */
+            color: #333;
+            /* צבע הטקסט בשדות */
         }
-        .form-container input {
-            color: #333; /* צבע טקסט בשדות */
-        }
+
         .form-container button {
-            background-color: #ff5722; /* צבע רקע לכפתור */
-            color: white; /* צבע טקסט בלבן */
-            cursor: pointer; /* מצביע על אפשרות לחיצה */
-            font-weight: bold; /* טקסט מודגש */
-            transition: background-color 0.3s; /* מעבר צבע חלק */
+            background-color: #4CAF50;
+            /* צבע ירוק לכפתור */
+            color: white;
+            /* צבע טקסט לבן */
+            padding: 12px;
+            /* רווח פנימי בתוך הכפתור */
+            border: none;
+            /* הסרת גבול לכפתור */
+            border-radius: 5px;
+            /* קצוות מעוגלות לכפתור */
+            cursor: pointer;
+            /* שינוי הסמן בעת ריחוף על הכפתור */
+            font-size: 18px;
+            /* גודל גופן של הכפתור */
+            font-weight: bold;
+            /* הדגשת הטקסט בכפתור */
+            transition: background-color 0.3s;
+            /* אנימציה חלקה בעת שינוי צבע */
         }
+
         .form-container button:hover {
-            background-color: #e64a19; /* צבע כהה יותר בהובר */
+            background-color: #388E3C;
+            /* שינוי צבע הכפתור בעת ריחוף (hover) */
         }
+
         footer {
-            margin-top: auto; /* דואג לפוטר להיות בתחתית */
-            background-color: rgba(0, 0, 0, 0.7); /* צבע רקע כהה */
-            color: white; /* צבע טקסט בלבן */
-            text-align: center; /* מרכז את הטקסט */
-            padding: 15px 0; /* רווח פנימי לפוטר */
-            width: 100%; /* גודל מלא */
+            margin-top: auto;
+            /* דואג שהפוטר יישאר בתחתית הדף */
+            background-color: rgba(0, 0, 0, 0.7);
+            /* רקע שחור עם שקיפות קלה לפוטר */
+            color: white;
+            /* צבע טקסט לבן לפוטר */
+            text-align: center;
+            /* יישור הטקסט למרכז */
+            padding: 15px 0;
+            /* רווח פנימי מעל ומתחת לטקסט בפוטר */
+            width: 100%;
+            /* רוחב מלא של הפוטר */
         }
     </style>
 </head>
+
 <body>
-
+    <!-- הלוגו של JOBAKSHI -->
     <img src="new-logo.png" alt="לוגו JOBAKSHI" class="logo">
+    
+    <!-- כותרת ראשית -->
     <h1>הצעד הבא שלך בקריירה - נמצא כאן</h1>
-    <p>מלא את הפרטים שלך ואנחנו נמצא לך עבודה מתאימה!</p>
-
+    
+    <!-- קונטיינר לטופס -->
     <div class="form-container">
         <h3>תמצאו לי עבודה</h3>
+        <!-- טופס לשליחת נתונים ל-Formspree -->
         <form action="https://formspree.io/f/manwgpqz" method="POST">
+            <!-- שדה שם פרטי -->
             <input type="text" name="first_name" placeholder="שם פרטי" required>
+            <!-- שדה שם משפחה -->
             <input type="text" name="last_name" placeholder="שם משפחה" required>
+            <!-- שדה מספר טלפון עם אימות פורמט -->
             <input type="tel" name="phone" placeholder="מספר טלפון" pattern="[0-9]{10}" title="מספר טלפון חייב להיות 10 ספרות" required>
+            <!-- שדה אימייל -->
+            <input type="email" name="email" placeholder="האימייל שלך" required>
+            <!-- שדה הודעה אופציונלי -->
+            <textarea name="message" placeholder="הודעה (אופציונלי)"></textarea>
+            <!-- כפתור לשליחת הטופס -->
             <button type="submit">תחזרו אלי</button>
         </form>
     </div>
 
+    <!-- פוטר עם כל הזכויות שמורות -->
     <footer>
         <p>כל הזכויות שמורות &copy; 2024 JOBAKSHI</p>
     </footer>
-
 </body>
+
 </html>
